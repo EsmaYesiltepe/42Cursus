@@ -6,7 +6,7 @@
 /*   By: eyesilte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:56:14 by eyesilte          #+#    #+#             */
-/*   Updated: 2022/03/02 18:01:04 by eyesilte         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:40:51 by eyesilte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*ft_itoa(int n)
 	ln = n;
 	nc = numcount(ln);
 	mal = (char *)malloc((nc + 1) * sizeof(char));
+	if (!mal)
+		return (NULL);
 	mal[nc--] = '\0';
 	if (ln < 0)
 	{
@@ -45,14 +47,10 @@ char	*ft_itoa(int n)
 		ln *= -1;
 	}
 	if (ln == 0)
-	{
 		mal[0] = '0';
-		return (mal);
-	}
 	while (ln > 0)
 	{
-		mal[nc] = 48 + (ln % 10);
-		nc--;
+		mal[nc--] = 48 + (ln % 10);
 		ln = ln / 10;
 	}
 	return (mal);
@@ -60,7 +58,7 @@ char	*ft_itoa(int n)
 /*
 int main(void)
 {
-    int a = -648;
+    int a = 0;
     printf("%s" , ft_itoa(a));
 }
 */
